@@ -48,6 +48,7 @@ os.system("cls")
 while True:
 
     login_wifi("awing60", "Awing60@2018")
+    # chờ 60p thì gửi request lại
     time.sleep(3600)
     
 
