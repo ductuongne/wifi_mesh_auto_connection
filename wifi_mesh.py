@@ -1,10 +1,14 @@
 import requests
 import time
 import os
+from fake_useragent import UserAgent
 
-def login_wifi(username, password, ex_key_cookie):
-    url = "http://free.wi-mesh.vn/login"
+def login_wifi(username, password):
 
+    ua = UserAgent().random
+    
+    url1 = "http://186.186.0.1/login"
+    url2 = "http://free.wi-mesh.vn/login"
     payload = {
         "username": username,
         "password": password,
@@ -23,11 +27,12 @@ def login_wifi(username, password, ex_key_cookie):
         "Origin": "http://v1.awingconnect.vn",
         "Referer": "http://v1.awingconnect.vn/",
         "Upgrade-Insecure-Requests": "1",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
-        "Cookie": f"exKey={ex_key_cookie}"
+        "User-Agent": ua,
     }
-
-    response = requests.post(url, data=payload, headers=headers)
+    try:
+        response = requests.post(url1, data=payload, headers=headers)
+    except:
+        response = requests.post(url2, data=payload, headers=headers)
 
     if response.status_code == 200:
         print("✅ Đã gửi yêu cầu đăng nhập.")
@@ -41,8 +46,8 @@ def login_wifi(username, password, ex_key_cookie):
 
 os.system("cls")
 while True:
-    login_wifi("awing60", "Awing60@2018", "FREE_AWING_26E2889F927004472C84AC7C291E9CC4")
-    #login_wifi("awing15-15", "Awing15-15@2023", "FREE_AWING_26E2889F927004472C84AC7C291E9CC4")
+
+    login_wifi("awing60", "Awing60@2018")
     time.sleep(3600)
     
 
