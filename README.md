@@ -22,7 +22,7 @@ Tải và cài đặt Python từ [python.org](https://www.python.org/downloads/
 ### Bước 2: Clone hoặc tải dự án
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/ductuongne/wifi_mesh_auto_connection
 cd wifi_mesh_auto_connection
 ```
 
